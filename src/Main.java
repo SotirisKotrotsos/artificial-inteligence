@@ -3,7 +3,7 @@ import java.util.Collections;
 
 public class Main {
     public static void main(String[] args) {
-        State initialState = new State(3, 2, 100);
+        State initialState = new State(6, 2, 100);
         System.out.println("getChildrensize "+initialState.getChildren().size());
         System.out.println("score "+initialState.getScore());
         SpaceSearcher searcher = new SpaceSearcher(initialState);
@@ -18,6 +18,7 @@ public class Main {
         else{
             State temp = terminalState;
             ArrayList<State> path = new ArrayList<>();
+            path.add(terminalState);
             while(temp.getFather() != null) // if father is null, then we are at the root.
             {
                 path.add(temp.getFather());

@@ -162,8 +162,8 @@ public class State<child> implements Comparable<State> {
     public ArrayList<State> getChildren() {
         ArrayList<State> children = new ArrayList();
         if(coastOfBoat.equals(position.LEFT)){
-            for(int i = 0; i <= this.getCannibalsLeft(); i++) {
-                for(int j = 0; j <= this.getMissionariesLeft(); j++) {
+            for(int i = 0; i <= this.cannibalsLeft; i++) {
+                for(int j = 0; j <= this.cannibalsRight; j++) {
                     State child = new State(this);
                     if(child.moveBoat(i,j,this.coastOfBoat)){
                         child.addScore();
@@ -175,7 +175,7 @@ public class State<child> implements Comparable<State> {
                 }
             }
         }else {
-            for (int i = 0; i <= missionariesRight; i++) {
+            for (int i = 0; i <= cannibalsRight; i++) {
                 if (missionariesRight == 0) {
                     State child = new State(this);
                     if (child.moveBoat(i, 0, this.coastOfBoat)) {
@@ -225,91 +225,7 @@ public class State<child> implements Comparable<State> {
         }
         return true;
     }
-    /*public boolean moveRight(ArrayList<State> children) {
-        if (this.coastOfBoat == "right") {
-            return false;
-        } else {
-            for(int can = 0; can <= this.getCannibalsLeft(); ++can) {
-                for(int mis = 0; mis <= this.getMissionariesLeft(); ++mis) {
-                    System.out.println("before copy right //" + this.getCoastOfBoat());
-                    State child = new State(this.spaceOfBoat, this.cannibalsLeft, this.missionariesLeft, this.cannibalsRight, this.missionariesRight, this.coastOfBoat, this.numOfPeople, this.maxNumOfRoutes);
-                    if (this.Restrictions(mis, can, "right")) {
-                        System.out.println("mis to move:" + mis);
-                        System.out.println("can to move:" + can);
-                        this.setMissionariesLeft(this.getMissionariesLeft() - mis);
-                        System.out.println("mis left" + this.getMissionariesLeft());
-                        this.setCannibalsLeft(this.getCannibalsLeft() - can);
-                        System.out.println("can left" + this.getCannibalsLeft());
-                        this.setCannibalsRight(this.getCannibalsRight() + can);
-                        System.out.println("can right" + this.getCannibalsRight());
-                        this.setMissionariesRight(this.getMissionariesRight() + mis);
-                        System.out.println("mis right" + this.getMissionariesRight());
-                        this.coastOfBoat = "right";
-                        child.setFather(this);
-                        child.heuristic();
-                        children.add(child);
-                        System.out.println("mvright " + this.getCoastOfBoat());
-                        return true;
-                    }
-                }
-            }
 
-            return false;
-        }
-    }
-
-    public boolean moveLeft(ArrayList<State> children) {
-        if (this.coastOfBoat == "left") {
-            return false;
-        } else {
-            for(int can = 0; can <= this.getCannibalsRight(); ++can) {
-                for(int mis = 0; mis <= this.getMissionariesRight(); ++mis) {
-                    System.out.println("before copy left //" + this.getCoastOfBoat());
-                    State child = new State(this.spaceOfBoat, this.cannibalsLeft, this.missionariesLeft, this.cannibalsRight, this.missionariesRight, this.coastOfBoat, this.numOfPeople, this.maxNumOfRoutes);
-                    if (this.Restrictions(mis, can, "left")) {
-                        System.out.println("mis to move:" + mis);
-                        System.out.println("can to move:" + can);
-                        this.setCannibalsRight(this.cannibalsRight - can);
-                        System.out.println("can right" + this.getCannibalsRight());
-                        this.setMissionariesRight(this.missionariesRight - mis);
-                        System.out.println("mis right" + this.getCannibalsRight());
-                        this.setCannibalsLeft(this.cannibalsLeft + can);
-                        System.out.println("can left" + this.getCannibalsLeft());
-                        this.setMissionariesLeft(this.missionariesLeft + mis);
-                        System.out.println("mis left" + this.getMissionariesLeft());
-                        this.coastOfBoat = "left";
-                        child.setFather(this);
-                        child.heuristic();
-                        children.add(child);
-                        System.out.println("mvleft " + this.getCoastOfBoat());
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-    }*/
-
-    /*public boolean Restrictions(int numOfMissionaries, int numOfCannibals, String move) {
-        if (numOfCannibals + numOfMissionaries > this.getSpaceOfBoat()) {
-            return false;
-        } else {
-            if (move.equals("left")) {
-                if (this.getMissionariesRight() - numOfMissionaries < this.getCannibalsRight() - numOfCannibals) {
-                    return false;
-                }
-            } else if (this.getMissionariesLeft() - numOfMissionaries < this.getCannibalsLeft() - numOfCannibals) {
-                return false;
-            }
-
-            if (this.getSpaceOfBoat() >= 2 && numOfMissionaries < numOfCannibals) {
-                return false;
-            } else {
-                return numOfCannibals != 0 && numOfMissionaries != 0;
-            }
-        }
-    }*/
 
     public boolean isValid() {
         return ((this.cannibalsLeft<=this.missionariesLeft || this.missionariesLeft==0) && (this.cannibalsRight<=this.missionariesRight) || this.missionariesRight == 0);
