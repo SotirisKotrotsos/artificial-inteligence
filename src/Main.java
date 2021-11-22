@@ -5,7 +5,6 @@ public class Main {
     public static void main(String[] args) {
         State initialState = new State(6, 2, 100);
         System.out.println("getChildrensize "+initialState.getChildren().size());
-        System.out.println("score "+initialState.getScore());
         SpaceSearcher searcher = new SpaceSearcher(initialState);
         long start = System.currentTimeMillis();
         //State terminalState = searcher.AStar(initialState);

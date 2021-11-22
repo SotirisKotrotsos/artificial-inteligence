@@ -15,24 +15,7 @@ public class SpaceSearcher {
         }
         closedSet.add(state);
     }
-    public State AStar(State initialState){
 
-        while (!frontier.isEmpty()){
-            State current = frontier.remove(0);
-            for(Object state: current.getChildren()){
-                if(!frontier.contains((State)state) && !closedSet.contains((State)state)){
-                    closedSet.add((State)state);
-                }
-            }
-            if(current.isFinal()){
-                return current;
-            }
-            frontier.add(current);
-            Collections.sort(frontier);
-
-        }
-        return null;
-    }
     State BestFSClosedSet(State initialState)
     {
         if(initialState.isFinal()) return initialState;
