@@ -27,7 +27,8 @@ public class Main {
             Collections.reverse(path);
             for(State item: path)
             {
-                System.out.println(item.toString());
+                //System.out.println(item.toString());
+                item.print();
             }
             System.out.println();
             System.out.println("Search time:" + (double)(end - start) / 1000 + " sec.");  // total time of searching in seconds.
