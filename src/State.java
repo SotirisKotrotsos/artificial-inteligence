@@ -40,6 +40,7 @@ public class State<child> implements Comparable<State> {
         this.setSpaceOfBoat(state.getSpaceOfBoat());
         this.setScore(state.getScore());
         this.setRoute(state.getRoute());
+        this.setMaxNumOfRoutes(state.getMaxNumOfRoutes());
     }
 
 
