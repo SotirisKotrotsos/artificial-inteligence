@@ -22,14 +22,12 @@ public class SpaceSearcher {
         // step 1: put initial state in the frontier.
         this.frontier.add(initialState);
         this.closedSet.add(initialState);
-        System.out.println("frontier size:" + frontier.size());
         // step 2: check for empty frontier.
         while(this.frontier.size() > 0)
         {
             // step 3: get the first node out of the frontier.
             State currentState = this.frontier.remove(0);
             // step 4: if final state, return.
-            System.out.println(currentState.isFinal());
             if(currentState.isFinal()) return currentState;
 
             // step 5: if the node is not in the closed set, put the children at the frontier.
@@ -38,7 +36,6 @@ public class SpaceSearcher {
             {
                 this.closedSet.add(currentState);
                 this.frontier.addAll(currentState.getChildren());
-                System.out.println("frontier size:" + frontier.size());
                 // step 6: sort the frontier based on the heuristic score to get best as first
                 Collections.sort(this.frontier); // sort the frontier to get best as first
             }

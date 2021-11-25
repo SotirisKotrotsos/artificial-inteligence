@@ -1,10 +1,17 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        State initialState = new State(6, 2, 100);
-        System.out.println("getChildrensize "+initialState.getChildren().size());
+        Scanner myScanner = new Scanner(System.in);
+        System.out.println("Please insert the the initial number of Cannibals and Missionaries.");
+        int numOfPeople =  myScanner.nextInt();
+        System.out.println("Please insert the space of boat.");
+        int spaceOfBoat = myScanner.nextInt();
+        System.out.println("Please insert the maximum number of routes");
+        int maxNumOfRoutes = myScanner.nextInt();
+        State initialState = new State(numOfPeople, spaceOfBoat, maxNumOfRoutes);
         SpaceSearcher searcher = new SpaceSearcher(initialState);
         long start = System.currentTimeMillis();
         //State terminalState = searcher.AStar(initialState);

@@ -14,6 +14,7 @@ public class State<child> implements Comparable<State> {
     private int numOfPeople;
     private position coastOfBoat;
     private State father = null;
+    private int route;
 
     State(int numOfPeople, int spaceOfBoat, int maxNumOfRoutes) {
         this.numOfPeople = numOfPeople;
@@ -25,6 +26,7 @@ public class State<child> implements Comparable<State> {
         this.missionariesRight = 0;
         this.coastOfBoat = position.LEFT;
         this.score = 0;
+        this.route = 0;
     }
 
     State(State state) {
@@ -37,6 +39,7 @@ public class State<child> implements Comparable<State> {
         this.setNumOfPeople(state.getNumOfPeople());
         this.setSpaceOfBoat(state.getSpaceOfBoat());
         this.setScore(state.getScore());
+        this.setRoute(state.getRoute());
     }
 
 
@@ -118,6 +121,14 @@ public class State<child> implements Comparable<State> {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public int getRoute() {
+        return route;
+    }
+
+    public void setRoute(int route) {
+        this.route = route;
     }
 
     boolean isFinal() {
@@ -212,6 +223,7 @@ public class State<child> implements Comparable<State> {
             this.missionariesRight += missionaries;
             this.cannibalsRight += cannibals;
             coastOfBoat = position.RIGHT;
+            this.route++;
         }
         else{
             this.missionariesRight -= missionaries;
@@ -219,8 +231,13 @@ public class State<child> implements Comparable<State> {
             this.missionariesLeft += missionaries;
             this.cannibalsLeft += cannibals;
             coastOfBoat = position.LEFT;
+            this.route++;
         }
         if(!isValid()){
+            return false;
+        }
+        if(this.route>=this.maxNumOfRoutes){
+            System.out.println("The maximum number of routes overloaded");
             return false;
         }
         return true;
